@@ -4,10 +4,11 @@ import Button from "./components/Button/Button";
 
 const App = () =>{
   return <div>
-    <Button>Hello1</Button>
-    <Button mode="secondary" disabled>Hello2</Button>
-    <Button mode="success" size="small">Hello3</Button>
-    <Button mode="danger" size="large">Hello4</Button>
+    {/*<Button>Hello1</Button>*/}
+    {/*<Button mode="secondary" disabled>Hello2</Button>*/}
+    {/*<Button mode="success" size="small">Hello3</Button>*/}
+    {/*<Button mode="danger" size="large">Hello4</Button>*/}
+    <Button counter={0}>Counter</Button>
   </div>;
 }
 
