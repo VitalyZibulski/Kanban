@@ -1,0 +1,18 @@
+.Progress {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.Progress__percent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: orange;
+    transition: width 0.2s;
+}
