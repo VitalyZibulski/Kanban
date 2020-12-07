@@ -1,8 +1,0 @@
-.ButtonsGroup {
-    display: flex;
-    align-items: baseline;
-}
-
-.ButtonsGroup__item--active {
-    border-color: #000;
-}
