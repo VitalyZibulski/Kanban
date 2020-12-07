@@ -2,8 +2,8 @@ import "core-js/features/map";
 import "core-js/features/set";
 import React from "react";
 import ReactDOM from "react-dom";
-import bridge from "@vkontakte/vk-bridge";
-import App from "./App";
+// import bridge from "@vkontakte/vk-bridge";
+import App from "./components/App";
 import firebase from "firebase/app";
 
 import "firebase/auth";
@@ -25,17 +25,14 @@ var firebaseConfig = {
   firebase.analytics();
 
 // Init VK  Mini App
-bridge.send("VKWebAppInit");
+// bridge.send("VKWebAppInit");
 
-const db = firebase.firestore();
-db.collection("desks").get().then((querySnapshot) => {
-  querySnapshot.forEach((doc) => {
-    console.log(doc.data());
-  });
-});
+// const db = firebase.firestore();
+// db.collection("desks").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//     console.log(doc.id, doc.data());
+//   });
+// });
 
 
 ReactDOM.render(<App />, document.getElementById("root"));
-if (process.env.NODE_ENV === "development") {
-  import("./eruda").then(({ default: eruda }) => {}); //runtime download
-}
