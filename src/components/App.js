@@ -12,12 +12,14 @@ const App = () => {
 	const [activePanel, setActivePanel] = useState(panel.desks);
 
 	return (
-		<View activePanel={activePanel}>
-			<Panel id={panel.desks}><Desks onChangePanel={() => setActivePanel(panel.columns)} /></Panel>
-			<Panel id={panel.columns}>
-				<div>Hello, panel with columns</div>
-				<Button onClick={() => setActivePanel(panel.desks)}>Go to desks</Button>
+		<View activePanel={activePanel} header={false}>
+			<Panel id={panel.desks} separator={false}>
+				<Desks onChangePanel={() => setActivePanel(panel.columns)} />
 			</Panel>
+			{/*<Panel id={panel.columns}>*/}
+			{/*	<div>Hello, panel with columns</div>*/}
+			{/*	<Button onClick={() => setActivePanel(panel.desks)}>Go to desks</Button>*/}
+			{/*</Panel>*/}
 		</View>
 	);
 }
