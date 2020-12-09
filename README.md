@@ -13,3 +13,4 @@
 ##### id need got data one time need to use in useEffect []
 ##### if several useEffect, until all effect doesn't make, render won't be, even in one useEffect we change state
 ##### that's why we can't be use hooks in cycle, in condition and in other block code, need to exist in function scope 
+##### Syntetic event need for cross browser and optimization
