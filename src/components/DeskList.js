@@ -1,45 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DeskItem from "./DeskItem";
 import {CardGrid} from "@vkontakte/vkui";
-import firebase from "firebase";
 
-const desks = [
-  { name: 'Desk 1' },
-  { name: 'Desk 2' }
-]
-
-const DeskList = () => {
-    const [desks, setDesks] = useState([]);
-
-  useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("desks").get().then((querySnapshot) => {
-      const desks = [];
-      querySnapshot.forEach((doc) => {
-        desks.push({
-          id: doc.id,
-          name: doc.data().name,
-        })
-      });
-
-      setDesks(desks);
-    });
-  }, []);
-
-
+const DeskList = ({ desks }) => {
     if (!desks.length) {
       return null;
     }
 
     return (
         <CardGrid>
-          {desks.map(({name}) => <DeskItem key={name}>{name}</DeskItem>)}
+          {desks.map(({id, name}) => <DeskItem key={id}>{name}</DeskItem>)}
         </CardGrid>
     );
 }
 
-DeskList.propTypes = {};
+DeskList.propTypes = {
+  desks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
+};
 
 export default DeskList;
