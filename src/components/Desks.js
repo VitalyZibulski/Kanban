@@ -3,27 +3,11 @@ import PropTypes from 'prop-types';
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
 import DeskList from "./DeskList";
 import DeskCreate from "./DeskCreate";
-import firebase from "firebase";
 
 const Desks = ({ onChangePanel }) => {
   const [desks, setDesks] = useState([]);
   const addDesk = (desk) => setDesks([...desks, desk]);
-
-  useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("desks").get().then((querySnapshot) => {
-      const desks = [];
-      querySnapshot.forEach((doc) => {
-        desks.push({
-          id: doc.id,
-          name: doc.data().name,
-        })
-      });
-
-      setDesks(desks);
-    });
-  }, []);
+  const removeDesk = (removeId) => setDesks(desks.filter(({id}) => id !== removeId));
 
     return (
       <Fragment>
@@ -32,7 +16,7 @@ const Desks = ({ onChangePanel }) => {
           <DeskCreate onCreate={addDesk}/>
         </Div>
 
-        <DeskList desks={desks}/>
+        <DeskList desks={desks} onDelete={removeDesk} onLoadDesks={setDesks}/>
       </Fragment>
     );
 }
