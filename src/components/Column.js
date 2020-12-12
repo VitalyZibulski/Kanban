@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Div, Card, CardGrid, Header, Button} from "@vkontakte/vkui";
-import ColumnCard from "./ColumnsCard";
+import {Div, Card, Header, Button} from "@vkontakte/vkui";
 
 import './Column.css';
 import firebase from "firebase";
+import Cards from "./Cards";
 
 const Column = ({ name, id, onDelete }) => {
   const deleteColumn = () => {
@@ -24,17 +24,15 @@ const Column = ({ name, id, onDelete }) => {
           <Button mode="destructive" onClick={deleteColumn}>Delete</Button>
         </div>
 
-        <Card className="Column_wrapper">
-          <CardGrid>
-            <ColumnCard>Card</ColumnCard>
-          </CardGrid>
+        <Card className="Column__wrapper">
+          <Cards />
         </Card>
       </Div>
     );
 }
 
 Column.propTypes = {
-  ide: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

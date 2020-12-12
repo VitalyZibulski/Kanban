@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Panel, Button } from '@vkontakte/vkui';
+import { View, Panel } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import Desks from "./Desks";
 import Columns from "./Columns";
