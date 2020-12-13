@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {PanelHeaderSimple, Gallery} from "@vkontakte/vkui";
-import Column from "./Column";
-import ColumnCreate from "./ColumnCreate";
+import Column from "../../components/Column/Column";
+import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 
 import './Columns.css';
 import firebase from "firebase";

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import firebase from "firebase/app";
-import CreateForm from "./CreateForm";
+import CreateForm from "../CreateForm/CreateForm";
 import { Div } from "@vkontakte/vkui/dist/components/Div/Div";
 
-import './Column.css';
+import '../Column/Column.css';
 
 const ColumnCreate = ({ onCreate }) => {
     const createColumn = (name) => {

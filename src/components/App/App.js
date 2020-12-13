@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Panel } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-import Desks from "./Desks";
-import Columns from "./Columns";
+import Desks from "../../panels/Desks/Desks";
+import Columns from "../../panels/Columns/Columns";
 
 const panel = {
 	desks: 'desks',

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import DeskItem from "./DeskItem";
+import DeskItem from "../DeskItem/DeskItem";
 import {CardGrid} from "@vkontakte/vkui";
 import firebase from "firebase";
 
