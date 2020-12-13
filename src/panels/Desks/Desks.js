@@ -4,10 +4,7 @@ import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
 import DeskList from "../../components/DeskList/DeskList";
 import DeskCreate from "../../components/DeskCreate/DeskCreate";
 
-const Desks = ({ onChangePanel }) => {
-  const [desks, setDesks] = useState([]);
-  const addDesk = (desk) => setDesks([...desks, desk]);
-  const removeDesk = (removeId) => setDesks(desks.filter(({id}) => id !== removeId));
+const Desks = ({ onChangePanel, setDesks, addDesk, removeDesk, desks }) => {
 
     return (
       <Fragment>
@@ -16,7 +13,7 @@ const Desks = ({ onChangePanel }) => {
           <DeskCreate onCreate={addDesk}/>
         </Div>
 
-        <DeskList desks={desks} onDelete={removeDesk} onLoadDesks={setDesks}/>
+        <DeskList desks={desks} onDelete={removeDesk} onLoadDesks={setDesks} onDeskClick={onChangePanel}/>
       </Fragment>
     );
 }

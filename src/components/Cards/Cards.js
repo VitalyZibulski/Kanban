@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import ColumnCard from "../ColumnCard/ColumnCard";
 import {CardGrid} from "@vkontakte/vkui";
 import firebase from "firebase";
 import CardCreate from "../CardCreate/CardCreate";
 
-const Cards = () => {
+const Cards = ({ columnId }) => {
   const [cards, setCards] = useState([]);
   const addCard = (card) => setCards([...cards, card]);
   const removeCard = (removeId) => setCards(cards.filter(({id}) => id !== removeId));
@@ -12,16 +13,18 @@ const Cards = () => {
   useEffect(() => {
     const db = firebase.firestore();
 
-    db.collection("cards").get().then((querySnapshot) => {
-      const cards = [];
-      querySnapshot.forEach((doc) => {
-        const { columnId, name } = doc.data();
+    db.collection("cards").where('columnId', '==', columnId).get()
+      .then((querySnapshot) => {
+        const cards = [];
 
-        cards.push({
-          id: doc.id,
-          columnId,
-          name,
-        })
+        querySnapshot.forEach((doc) => {
+          const { columnId, name } = doc.data();
+
+          cards.push({
+            id: doc.id,
+            columnId,
+            name,
+          })
       });
 
       setCards(cards);
@@ -31,9 +34,13 @@ const Cards = () => {
     return (
       <CardGrid>
         {cards.map(({ id, name }) => <ColumnCard key={id} id={id} onDelete={removeCard}>{name}</ColumnCard>)}
-        <CardCreate onCreate={addCard}/>
+        <CardCreate columnId={columnId} onCreate={addCard}/>
       </CardGrid>
     );
+}
+
+Cards.propTypes = {
+  columnId: PropTypes.string.isRequired,
 }
 
 export default Cards;

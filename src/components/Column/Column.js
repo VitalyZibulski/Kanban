@@ -25,7 +25,7 @@ const Column = ({ name, id, onDelete }) => {
         </div>
 
         <Card className="Column__wrapper">
-          <Cards />
+          <Cards columnId={id}/>
         </Card>
       </Div>
     );

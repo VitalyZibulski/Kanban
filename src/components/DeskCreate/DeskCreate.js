@@ -4,6 +4,7 @@ import firebase from "firebase/app";
 import CreateForm from "../CreateForm/CreateForm";
 
 const DeskCreate = ({ onCreate }) => {
+
     const createDesk = (name) => {
       const db = firebase.firestore();
 
