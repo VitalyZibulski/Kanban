@@ -2,23 +2,12 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import DeskItem from "../DeskItem/DeskItem";
 import {CardGrid} from "@vkontakte/vkui";
-import firebase from "firebase";
+import { getDesks } from '../../actions';
 
 const DeskList = ({ desks, onDelete, onLoadDesks, onDeskClick }) => {
   useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("desks").get().then((querySnapshot) => {
-      const desks = [];
-      querySnapshot.forEach((doc) => {
-        desks.push({
-          id: doc.id,
-          name: doc.data().name,
-        })
-      });
-
-      onLoadDesks(desks);
-    });
+      // getDesks().then(onLoadDesks(desks))
+      getDesks().then(desks => onLoadDesks(desks))
     }, []);
 
     if (!desks.length) {

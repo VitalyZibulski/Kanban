@@ -16,3 +16,6 @@
 ##### Syntetic event need for cross browser and optimization
 > Patterns
 ##### All buisness logig have to be in the top
+> Have follow
+##### No more than 100 string code in a component
+##### Query to server always Promise

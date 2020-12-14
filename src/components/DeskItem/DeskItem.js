@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Div, Button } from "@vkontakte/vkui";
+import { deleteDesk } from "../../actions";
 
 import './DeskItem.css';
-import firebase from "firebase";
 
 const DeskItem = ({ id, children, onDelete, onClick }) => {
     const deleteItem = () => {
-      const db = firebase.firestore();
-
-      db.collection("desks")
-        .doc(id)
-        .delete()
+      deleteDesk(id)
         .then(() => onDelete(id))
         .catch(console.error);
     };
