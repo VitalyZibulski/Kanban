@@ -3,28 +3,13 @@ import PropTypes from 'prop-types';
 import {PanelHeaderSimple, Gallery, PanelHeaderBack} from "@vkontakte/vkui";
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
+import { getColumns } from "../../actions";
 
 import './Columns.css';
-import firebase from "firebase";
 
 const Columns = ({ goBack, setColumns, columns, removeColumn, addColumn, desk }) => {
   useEffect(() => {
-      const db = firebase.firestore();
-
-      db.collection("columns").where('deskId', '==', desk.id).get()
-        .then((querySnapshot) => {
-          const columns = [];
-          querySnapshot.forEach((doc) => {
-            const { deskId, name } = doc.data();
-            columns.push({
-              id: doc.id,
-              deskId,
-              name,
-            })
-        });
-
-        setColumns(columns);
-      });
+        getColumns(desk.id).then(setColumns)
     }, []);
 
     return (

@@ -4,7 +4,7 @@ import CreateForm from "../CreateForm/CreateForm";
 import { createDesk } from '../../actions';
 
 const DeskCreate = ({ onCreate }) => {
-    const deskCreate = (name) => (
+    const createItem = (name) => (
       createDesk(name)
         .then((doc) => onCreate({id: doc.id, ...doc.data() }))
         .catch(console.error)
@@ -12,7 +12,7 @@ const DeskCreate = ({ onCreate }) => {
 
     return (
       <CreateForm
-        onSubmit={deskCreate}
+        onSubmit={createItem}
         placeholder="desk name"
         actionTitle="Create desk"
       />

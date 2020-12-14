@@ -6,8 +6,8 @@ import { getDesks } from '../../actions';
 
 const DeskList = ({ desks, onDelete, onLoadDesks, onDeskClick }) => {
   useEffect(() => {
-      // getDesks().then(onLoadDesks(desks))
-      getDesks().then(desks => onLoadDesks(desks))
+      // getDesks().then(desks => onLoadDesks(desks))
+      getDesks().then(onLoadDesks)
     }, []);
 
     if (!desks.length) {

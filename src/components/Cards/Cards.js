@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ColumnCard from "../ColumnCard/ColumnCard";
-import {CardGrid} from "@vkontakte/vkui";
-import firebase from "firebase";
+import { CardGrid } from "@vkontakte/vkui";
 import CardCreate from "../CardCreate/CardCreate";
+import { getCards } from "../../actions";
 
 const Cards = ({ columnId }) => {
   const [cards, setCards] = useState([]);
@@ -11,24 +11,7 @@ const Cards = ({ columnId }) => {
   const removeCard = (removeId) => setCards(cards.filter(({id}) => id !== removeId));
 
   useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("cards").where('columnId', '==', columnId).get()
-      .then((querySnapshot) => {
-        const cards = [];
-
-        querySnapshot.forEach((doc) => {
-          const { columnId, name } = doc.data();
-
-          cards.push({
-            id: doc.id,
-            columnId,
-            name,
-          })
-      });
-
-      setCards(cards);
-    });
+    getCards(columnId).then(setCards)
   }, []);
 
     return (
