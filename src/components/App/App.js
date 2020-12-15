@@ -10,24 +10,9 @@ const panel = {
 }
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState(panel.desks);
-	const [activeDesk, setActiveDesk] = useState(null);
-	const goToColumns = (deskId) => {
-		setActiveDesk(desks.find(({id}) => id === deskId));
-		setActivePanel(panel.columns);
-	}
-
-	const goToDesks = () => setActivePanel(panel.desks);
-
-	// desks
-	const [desks, setDesks] = useState([]);
-	const addDesk = (desk) => setDesks([...desks, desk]);
-	const removeDesk = (removeId) => setDesks(desks.filter(({id}) => id !== removeId));
-
-	// columns
-	const [columns, setColumns] = useState([]);
-	const addColumn = (column) => setColumns([...columns, column]);
-	const removeColumn = (removeId) => setColumns(columns.filter(({id}) => id !== removeId));
+	const { desks, addDesk, removeDesk, setDesks } = useDesksState();
+	const { columns, addColumn, removeColumn, setColumns } = useColumnsState();
+	const { activePanel, activeDesk, goToColumns, goToDesks } = useAppState(desks);
 
 	return (
 		<View activePanel={activePanel} header={false}>
@@ -54,6 +39,35 @@ const App = () => {
 			</Panel>
 		</View>
 	);
+}
+
+const useColumnsState = () => {
+	const [columns, setColumns] = useState([]);
+	const addColumn = (column) => setColumns([...columns, column]);
+	const removeColumn = (removeId) => setColumns(columns.filter(({id}) => id !== removeId));
+
+	return { columns, addColumn, removeColumn, setColumns }
+}
+
+const useDesksState = () => {
+	const [desks, setDesks] = useState([]);
+	const addDesk = (desk) => setDesks([...desks, desk]);
+	const removeDesk = (removeId) => setDesks(desks.filter(({id}) => id !== removeId));
+
+	return { desks, addDesk, removeDesk, setDesks };
+}
+
+const useAppState = (desks) => {
+	const [activePanel, setActivePanel] = useState(panel.desks);
+	const [activeDesk, setActiveDesk] = useState(null);
+	const goToColumns = (deskId) => {
+		setActiveDesk(desks.find(({id}) => id === deskId));
+		setActivePanel(panel.columns);
+	}
+
+	const goToDesks = () => setActivePanel(panel.desks);
+
+	return { activePanel, activeDesk, goToColumns, goToDesks }
 }
 
 export default App;

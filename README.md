@@ -19,3 +19,4 @@
 > Have follow
 ##### No more than 100 string code in a component
 ##### Query to server always Promise
+##### rule of hook - start with use
