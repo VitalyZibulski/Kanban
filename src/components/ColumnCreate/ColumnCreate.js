@@ -9,7 +9,6 @@ import '../Column/Column.css';
 
 const ColumnCreate = ({ onCreate, deskId }) => {
     const state = useContext(Context);
-    console.log(state);
 
     const createItem = (name) => {
         createColumn(name, deskId)
