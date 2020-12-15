@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import CreateForm from "../CreateForm/CreateForm";
 import { Div } from "@vkontakte/vkui/dist/components/Div/Div";
 import { createColumn } from "../../actions";
+import { Context } from "../App/App";
 
 import '../Column/Column.css';
 
 const ColumnCreate = ({ onCreate, deskId }) => {
+    const state = useContext(Context);
+    console.log(state);
+
     const createItem = (name) => {
         createColumn(name, deskId)
           .then((doc) => onCreate({id: doc.id, ...doc.data() }))

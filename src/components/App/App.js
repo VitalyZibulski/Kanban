@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import { View, Panel } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import Desks from "../../panels/Desks/Desks";
@@ -9,35 +9,40 @@ const panel = {
 	columns: 'columns'
 }
 
+const state = { a: 1 };
+export const Context = createContext(state);
+
 const App = () => {
 	const { desks, addDesk, removeDesk, setDesks } = useDesksState();
 	const { columns, addColumn, removeColumn, setColumns } = useColumnsState();
 	const { activePanel, activeDesk, goToColumns, goToDesks } = useAppState(desks);
 
 	return (
-		<View activePanel={activePanel} header={false}>
-			<Panel id={panel.desks} separator={false}>
-				<Desks
-					onChangePanel={goToColumns}
-					setDesks={setDesks}
-					addDesk={addDesk}
-					removeDesk={removeDesk}
-					desks={desks}
-				/>
-			</Panel>
-			<Panel id={panel.columns} separator={false} className="columns">
-				{activeDesk && (
-					<Columns
-						desk={activeDesk}
-						goBack={goToDesks}
-						addColumn={addColumn}
-						columns={columns}
-						removeColumn={removeColumn}
-						setColumns={setColumns}
+		<Context.Provider value={state}>
+			<View activePanel={activePanel} header={false}>
+				<Panel id={panel.desks} separator={false}>
+					<Desks
+						onChangePanel={goToColumns}
+						setDesks={setDesks}
+						addDesk={addDesk}
+						removeDesk={removeDesk}
+						desks={desks}
 					/>
-				)}
-			</Panel>
-		</View>
+				</Panel>
+				<Panel id={panel.columns} separator={false} className="columns">
+					{activeDesk && (
+						<Columns
+							desk={activeDesk}
+							goBack={goToDesks}
+							addColumn={addColumn}
+							columns={columns}
+							removeColumn={removeColumn}
+							setColumns={setColumns}
+						/>
+					)}
+				</Panel>
+			</View>
+		</Context.Provider>
 	);
 }
 
