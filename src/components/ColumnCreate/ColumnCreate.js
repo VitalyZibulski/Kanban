@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import CreateForm from "../CreateForm/CreateForm";
 import { Div } from "@vkontakte/vkui/dist/components/Div/Div";
 import { createColumn } from "../../actions";
-import { Context } from "../App/App";
+import Context from "../App/context";
 
 import '../Column/Column.css';
 
-const ColumnCreate = ({ onCreate, deskId }) => {
-    const state = useContext(Context);
+const ColumnCreate = () => {
+    const { addColumn, activeDesk } = useContext(Context);
 
-    const createItem = (name) => {
-        createColumn(name, deskId)
-          .then((doc) => onCreate({id: doc.id, ...doc.data() }))
-          .catch(console.error);
-    };
+    const createItem = (name) => (
+        createColumn(name, activeDesk.id)
+          .then((doc) => addColumn({ id: doc.id, ...doc.data() }))
+          .catch(console.error)
+    );
 
     return (
       <Div className="Column">
@@ -25,11 +25,6 @@ const ColumnCreate = ({ onCreate, deskId }) => {
         />
       </Div>
     );
-}
-
-ColumnCreate.propTypes = {
-  onCreate: PropTypes.func.isRequired,
-  deskId: PropTypes.string.isRequired,
 }
 
 export default ColumnCreate;

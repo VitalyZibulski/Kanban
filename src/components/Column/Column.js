@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Div, Card, Header, Button } from "@vkontakte/vkui";
 import Cards from "../Cards/Cards";
 import { deleteColumn } from "../../actions";
+import Context from "../App/context";
 
 import './Column.css';
 
-const Column = ({ name, id, onDelete }) => {
+const Column = ({ name, id }) => {
+  const { removeColumn } = useContext(Context);
+
   const deleteItem = () => {
       deleteColumn(id)
-      .then(() => onDelete(id))
+      .then(() => removeColumn(id))
       .catch(console.error);
   };
 
@@ -30,7 +33,6 @@ const Column = ({ name, id, onDelete }) => {
 Column.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default Column;

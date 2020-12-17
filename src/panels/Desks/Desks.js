@@ -1,25 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
 import DeskList from "../../components/DeskList/DeskList";
 import DeskCreate from "../../components/DeskCreate/DeskCreate";
 
-const Desks = ({ onChangePanel, setDesks, addDesk, removeDesk, desks }) => {
-
+const Desks = ({ setDesks, desks }) => {
     return (
       <Fragment>
         <PanelHeaderSimple>My desks</PanelHeaderSimple>
-        <Div>
-          <DeskCreate onCreate={addDesk}/>
-        </Div>
+        <Div><DeskCreate /></Div>
 
-        <DeskList desks={desks} onDelete={removeDesk} onLoadDesks={setDesks} onDeskClick={onChangePanel}/>
+        <DeskList />
       </Fragment>
     );
 }
-
-Desks.propTypes = {
-  onChangePanel: PropTypes.func.isRequired,
-};
 
 export default Desks;
