@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import CreateForm from "../CreateForm/CreateForm";
+import CardCreateForm from "./CardCreateForm";
 import { createCard } from "../../actions";
 import Context from "../App/context";
 
@@ -14,11 +14,7 @@ const CardCreate = ({ columnId }) => {
     };
 
     return (
-      <CreateForm
-        onSubmit={createItem}
-        placeholder="card name"
-        actionTitle="Create card"
-      />
+      <CardCreateForm onSubmit={createItem} />
     );
 }
 

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import CreateForm from "../CreateForm/CreateForm";
 import { Div } from "@vkontakte/vkui/dist/components/Div/Div";
+import ColumnCreateForm from "./ColumnCreateForm";
 import { createColumn } from "../../actions";
 import Context from "../App/context";
 
@@ -18,11 +17,7 @@ const ColumnCreate = () => {
 
     return (
       <Div className="Column">
-        <CreateForm
-          onSubmit={createItem}
-          placeholder="column name"
-          actionTitle="Create column"
-        />
+        <ColumnCreateForm onSubmit={createItem} />
       </Div>
     );
 }

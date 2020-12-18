@@ -1,48 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, FormLayout, Input} from "@vkontakte/vkui";
 import Icon24Add from '@vkontakte/icons/dist/24/add';
-
-const modes = {
-  button: 'button',
-  form: 'form',
-}
-
-const statuses = {
-  default: 'default',
-  error: 'error',
-}
+import { useCreateForm } from "./hooks";
 
 const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
-    const [mode, setMode] = useState(modes.button);
-    const [name, setName] = useState('');
-    const [status, setStatus] = useState(statuses.default);
-    const reset = () => {
-      setStatus(statuses.default);
-      setMode(modes.button);
-      setName('');
-    }
+    const {
+      name,
+      status,
+      reset,
+      submit,
+      setFormMode,
+      onChangeInput,
+      isButtonMode
+    } = useCreateForm(onSubmit);
 
-    // if submitted return Promise
-    const submit = (event) => {
-      if (event) {
-        event.preventDefault();
-      }
-
-      if (!name.trim().length) {
-        setStatus(statuses.error);
-        return;
-      }
-
-      onSubmit(name).then(reset)
-    };
-
-    if (mode === modes.button) {
+    if (isButtonMode) {
       return (
         <Button
-          onClick={() => setMode(modes.form)}
+          onClick={setFormMode}
           before={<Icon24Add />}
           size="xl"
+          mode="outline"
         >
           {actionTitle}
         </Button>
@@ -55,7 +34,7 @@ const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
           <Input
             autoFocus
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={onChangeInput}
             status={status}
             placeholder={placeholder}
           />
