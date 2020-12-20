@@ -1,30 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View, Panel } from '@vkontakte/vkui';
-import '@vkontakte/vkui/dist/vkui.css';
 import Desks from "../../panels/Desks/Desks";
 import Columns from "../../panels/Columns/Columns";
-import EBoundary from "../ErrorBoundary/EBoundary";
 import { panel } from "./constants";
-import Context from "./context";
 import { useAppState } from "./hooks";
+import { useRoute } from "react-router5";
 
 
 const App = () => {
-	const state = useAppState();
+	const { activePanel, popout, activeDesk } = useAppState();
+	const { route } = useRoute();
+
+	console.log(route);
 
 	return (
-		<EBoundary>
-			<Context.Provider value={state}>
-				<View activePanel={state.activePanel} header={false} popout={state.popout}>
-					<Panel id={panel.desks} separator={false}>
-						<Desks />
-					</Panel>
-					<Panel id={panel.columns} separator={false} className="Columns">
-						{state.activeDesk && <Columns />}
-					</Panel>
-				</View>
-			</Context.Provider>
-		</EBoundary>
+				<Fragment>
+					<View activePanel={activePanel} header={false} popout={popout}>
+						<Panel id={panel.desks} separator={false}>
+							<Desks />
+						</Panel>
+						<Panel id={panel.columns} separator={false} className="Columns">
+							{ activeDesk && <Columns />}
+						</Panel>
+					</View>
+				</Fragment>
 	);
 };
 
