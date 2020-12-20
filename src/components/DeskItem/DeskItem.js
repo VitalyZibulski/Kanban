@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Div, Button } from "@vkontakte/vkui";
+import { pages } from "../../router";
+import { useRouter } from 'react-router5';
 import { deleteDesk } from "../../actions";
 
 import './DeskItem.css';
 import Context from "../App/context";
 
 const DeskItem = ({ id, children }) => {
-    const { removeDesk, goToColumns } = useContext(Context);
-    const goToColumnPanel = () => goToColumns(id);
+  const router = useRouter();
+    const { removeDesk } = useContext(Context);
+    const goToColumnPanel = () => router.navigate(pages.COLUMNS);
     const deleteItem = (event) => {
       event.stopPropagation();
 

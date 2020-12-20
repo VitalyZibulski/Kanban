@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { panel } from "./constants";
+import { useRoute } from "react-router5";
+import { pages } from "../../router";
 
 const useColumnsState = () => {
   const [columns, setColumns] = useState([]);
@@ -18,16 +19,18 @@ const useDesksState = () => {
 }
 
 const useNavState = (desks) => {
-  const [activePanel, setActivePanel] = useState(panel.desks);
+  const router = useRoute();
+
+  const [activePanel, setActivePanel] = useState(null);
   const [activeDesk, setActiveDesk] = useState(null);
-  const goToColumns = (deskId) => {
-    setActiveDesk(desks.find(({id}) => id === deskId));
-    setActivePanel(panel.columns);
-  }
+  // const goToColumns = (deskId) => {
+  //   setActiveDesk(desks.find(({id}) => id === deskId));
+  //   setActivePanel(pages.COLUMNS);
+  // }
 
-  const goToDesks = () => setActivePanel(panel.desks);
+  const changeRoute = ({ route }) => setActivePanel(route.name);
 
-  return { activePanel, activeDesk, goToColumns, goToDesks }
+  return { activePanel, activeDesk, changeRoute }
 }
 
 const useCardsState = () => {
