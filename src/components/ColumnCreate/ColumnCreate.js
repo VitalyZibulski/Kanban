@@ -5,12 +5,15 @@ import { createColumn } from "../../actions";
 import Context from "../App/context";
 
 import '../Column/Column.css';
+import { useRoute } from "react-router5";
 
 const ColumnCreate = () => {
-    const { addColumn, activeDesk } = useContext(Context);
+    const { desks, addColumn } = useContext(Context);
+    const { route: { params: { deskId } } } = useRoute();
+    const desk = desks.find(({ id }) => id === deskId) || {};
 
     const createItem = (name) => (
-        createColumn(name, activeDesk.id)
+        createColumn(name, desk.id)
           .then((doc) => addColumn({ id: doc.id, ...doc.data() }))
           .catch(console.error)
     );

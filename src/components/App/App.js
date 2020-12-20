@@ -7,11 +7,10 @@ import { useAppState } from "./hooks";
 import { pages } from "../../router";
 
 const App = () => {
-	const { activePanel, popout, activeDesk, changeRoute } = useAppState();
+	const { activePanel, popout, changeRoute } = useAppState();
 	const { router, route } = useRoute();
 
 	useEffect(() => {
-		console.log(route);
 		router.subscribe(changeRoute);
 
 		changeRoute({ route });
@@ -28,7 +27,7 @@ const App = () => {
 							<Desks />
 						</Panel>
 						<Panel id={pages.COLUMNS} separator={false} className="Columns">
-							{ activeDesk && <Columns />}
+							<Columns />
 						</Panel>
 					</View>
 				</Fragment>

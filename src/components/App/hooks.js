@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useRoute } from "react-router5";
-import { pages } from "../../router";
+import { useState, useEffect } from "react";
+import { getDesks } from "../../actions";
 
 const useColumnsState = () => {
   const [columns, setColumns] = useState([]);
@@ -15,22 +14,19 @@ const useDesksState = () => {
   const addDesk = (desk) => setDesks([...desks, desk]);
   const removeDesk = (removeId) => setDesks(desks.filter(({id}) => id !== removeId));
 
+  useEffect(() => {
+    // getDesks().then(desks => onLoadDesks(desks))
+    getDesks().then(setDesks)
+  }, []);
+
   return { desks, addDesk, removeDesk, setDesks };
 }
 
-const useNavState = (desks) => {
-  const router = useRoute();
-
+const useNavState = () => {
   const [activePanel, setActivePanel] = useState(null);
-  const [activeDesk, setActiveDesk] = useState(null);
-  // const goToColumns = (deskId) => {
-  //   setActiveDesk(desks.find(({id}) => id === deskId));
-  //   setActivePanel(pages.COLUMNS);
-  // }
-
   const changeRoute = ({ route }) => setActivePanel(route.name);
 
-  return { activePanel, activeDesk, changeRoute }
+  return { activePanel, changeRoute }
 }
 
 const useCardsState = () => {
@@ -50,7 +46,7 @@ const usePopoutSatate = () => {
 export const useAppState = () =>  {
   const desksState = useDesksState();
   const columnsState = useColumnsState();
-  const navState = useNavState(desksState.desks);
+  const navState = useNavState();
   const cardsState = useCardsState();
   const popoutState = usePopoutSatate();
 
