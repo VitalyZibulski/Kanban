@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore } from 'redux';
 // import bridge from "@vkontakte/vk-bridge";
-import * as backend from './actions';
+import * as backend from './api';
 import * as router from './router';
 import App from "./components/App/AppContainer";
 import { reducer } from "./reducers/reducer";

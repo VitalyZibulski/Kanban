@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Div } from "@vkontakte/vkui/dist/components/Div/Div";
 import ColumnCreateForm from "./ColumnCreateForm";
-import { createColumn } from "../../actions";
+import { createColumn } from "../../api";
 import {addColumn} from "../../actions/actions";
 import { useRoute } from "react-router5";
 

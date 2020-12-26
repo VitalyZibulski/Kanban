@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import PropTypes from 'prop-types';
 import CardCreateForm from "./CardCreateForm";
-import { createCard } from "../../actions";
+import { createCard } from "../../api";
 import { addCard } from "../../actions/actions";
 
 const CardCreate = ({ columnId }) => {

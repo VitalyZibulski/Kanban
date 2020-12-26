@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useDispatch } from "react-redux";
 import CreateForm from "../CreateForm/CreateForm";
-import { createDesk } from '../../actions';
+import { createDesk } from '../../api';
 import { addDesk } from "../../actions/actions";
 
 const DeskCreate = () => {

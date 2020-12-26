@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, Div, Button } from "@vkontakte/vkui";
 import { pages } from "../../router";
 import { useRouter } from 'react-router5';
-import { deleteDesk } from "../../actions";
+import { deleteDesk } from "../../api";
 
 import { removeDesk } from "../../actions/actions";
 import './DeskItem.css';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ColumnCard from "../ColumnCard/ColumnCard";
 import { CardGrid, Div } from "@vkontakte/vkui";
 import CardCreate from "../CardCreate/CardCreate";
-import { getCards } from "../../actions";
+import { getCards } from "../../api";
 
 import './Cards.css';
 import { setCards } from "../../actions/actions";

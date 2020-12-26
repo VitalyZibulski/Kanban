@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Div, Card, Header, Button, ActionSheet, ActionSheetItem, usePlatform, IOS } from "@vkontakte/vkui";
 import Icon16MoreHorizontal from '@vkontakte/icons/dist/16/more_horizontal';
 import Cards from "../Cards/Cards";
-import { deleteColumn } from "../../actions";
+import { deleteColumn } from "../../api";
 import { removeColumn, setPopout } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 

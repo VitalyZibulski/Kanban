@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import DeskItem from "../DeskItem/DeskItem";
 import { CardGrid } from "@vkontakte/vkui";
-import { getDesks } from "../../actions";
+import { getDesks } from "../../api";
 import { setDesks } from "../../actions/actions";
 
 const DeskList = () => {

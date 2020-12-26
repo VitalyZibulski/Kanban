@@ -4,7 +4,7 @@ import {PanelHeaderSimple, Gallery, PanelHeaderBack} from "@vkontakte/vkui";
 import { useRoute } from 'react-router5';
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
-import { getColumns } from "../../actions";
+import { getColumns } from "../../api";
 import { setColumns, setActivePanel } from "../../actions/actions";
 import { pages } from "../../router";
 
