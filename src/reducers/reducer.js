@@ -49,7 +49,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       }
     }
 
-    case actionType.REMOVE_DESK: {
+    case actionType.SET_DESKS: {
       const { desks } = payload;
 
       return {
@@ -58,7 +58,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       }
     }
 
-    case actionType.SET_DESKS: {
+    case actionType.REMOVE_DESK: {
       const { removeId } = payload;
       const desks = state.columns.filter(({id}) => id !== removeId)
 

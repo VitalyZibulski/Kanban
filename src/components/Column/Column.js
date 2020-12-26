@@ -4,25 +4,26 @@ import { Div, Card, Header, Button, ActionSheet, ActionSheetItem, usePlatform, I
 import Icon16MoreHorizontal from '@vkontakte/icons/dist/16/more_horizontal';
 import Cards from "../Cards/Cards";
 import { deleteColumn } from "../../actions";
-import Context from "../App/context";
+import { removeColumn, setPopout } from "../../actions/actions";
+import { useDispatch } from "react-redux";
 
 import './Column.css';
 
 const Column = ({ name, id }) => {
+  const dispatch = useDispatch();
   const osname = usePlatform();
-  const { removeColumn, setPopout } = useContext(Context);
 
   const deleteItem = () => {
       deleteColumn(id)
-      .then(() => removeColumn(id))
+      .then(() => dispatch(removeColumn(id)))
       .catch(console.error);
   };
 
   const showColumnOptions = () => {
-    setPopout((<ActionSheet onClose={() => setPopout(null)}>
+    dispatch(setPopout((<ActionSheet onClose={() => setPopout(null)}>
       <ActionSheetItem autoclose mode="destructive" onClick={deleteItem}>Delete</ActionSheetItem>
       {osname === IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
-    </ActionSheet>))
+    </ActionSheet>)))
   }
 
     return (

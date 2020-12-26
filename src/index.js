@@ -16,4 +16,4 @@ backend.initialize();
 
 const store = createStore(reducer);
 
-ReactDOM.render(<App router={route} />, document.getElementById("root"));
+ReactDOM.render(<App router={route} store={store}/>, document.getElementById("root"));

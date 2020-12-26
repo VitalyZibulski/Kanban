@@ -1,26 +1,21 @@
 import React from 'react';
 import { RouterProvider, useRoute } from 'react-router5';
 import '@vkontakte/vkui/dist/vkui.css';
+import { Provider } from 'react-redux';
 import EBoundary from "../ErrorBoundary/EBoundary";
-import Context from "./context";
-import { useAppState } from "./hooks";
 
 import App from "./App";
 
 
-const AppContainer = ({ router }) => {
-  const state = useAppState();
-
-  return (
+const AppContainer = ({ router, store }) => (
     <RouterProvider router={router}>
-      <Context.Provider value={state}>
+      <Provider store={store}>
         <EBoundary>
           <App />
         </EBoundary>
-      </Context.Provider>
+      </Provider>
     </RouterProvider>
-  );
-};
+);
 
 export default AppContainer;
 

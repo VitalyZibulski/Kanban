@@ -1,22 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Div, Button } from "@vkontakte/vkui";
 import { pages } from "../../router";
 import { useRouter } from 'react-router5';
 import { deleteDesk } from "../../actions";
 
+import { removeDesk } from "../../actions/actions";
 import './DeskItem.css';
-import Context from "../App/context";
+import { useDispatch } from "react-redux";
 
 const DeskItem = ({ id, children }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
-    const { removeDesk } = useContext(Context);
     const goToColumnPanel = () => router.navigate(pages.COLUMNS, { deskId: id });
     const deleteItem = (event) => {
       event.stopPropagation();
 
       deleteDesk(id)
-        .then(() => removeDesk(id))
+        .then(() => dispatch(removeDesk(id)))
         .catch(console.error);
     };
 

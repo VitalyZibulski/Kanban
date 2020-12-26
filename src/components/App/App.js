@@ -1,20 +1,23 @@
 import React, { Fragment, useEffect } from 'react';
 import { View, Panel } from '@vkontakte/vkui';
 import { useRoute } from 'react-router5';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeRoute } from "../../actions/actions";
 import Desks from "../../panels/Desks/Desks";
 import Columns from "../../panels/Columns/Columns";
-import { useAppState } from "./hooks";
 import { pages } from "../../router";
 
 const App = () => {
-	const { activePanel, popout, changeRoute } = useAppState();
+	const dispatch = useDispatch();
+	const activePanel = useSelector((state) => state.activePanel);
+	const popout = useSelector((state) => state.popout);
 	const { router, route } = useRoute();
 
 	useEffect(() => {
-		router.subscribe(changeRoute);
+		router.subscribe((...args) => dispatch(changeRoute(...args)));
 
-		changeRoute({ route });
-	}, [router]);
+		dispatch(changeRoute({ route }));
+	}, [dispatch]);
 
 	if (!activePanel) {
 		return null;
