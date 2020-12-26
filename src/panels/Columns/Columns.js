@@ -21,7 +21,7 @@ const Columns = () => {
 
   useEffect(() => {
     if (desk.id) {
-        getColumns(desk.id).then((columns) => dispatch(setColumns()));
+        getColumns(desk.id).then((columns) => dispatch(setColumns(columns)));
       }
     }, [desk]);
 
