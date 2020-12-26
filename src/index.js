@@ -3,6 +3,8 @@ import "core-js/features/set";
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 // import bridge from "@vkontakte/vk-bridge";
 import * as backend from './api';
 import * as router from './router';
@@ -14,6 +16,6 @@ import { reducer } from "./reducers/reducer";
 const route = router.initialize();
 backend.initialize();
 
-const store = createStore(reducer);
+const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(<App router={route} store={store}/>, document.getElementById("root"));

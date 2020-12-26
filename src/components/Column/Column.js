@@ -20,7 +20,7 @@ const Column = ({ name, id }) => {
   };
 
   const showColumnOptions = () => {
-    dispatch(setPopout((<ActionSheet onClose={() => setPopout(null)}>
+    dispatch(setPopout((<ActionSheet onClose={() => dispatch(setPopout(null))}>
       <ActionSheetItem autoclose mode="destructive" onClick={deleteItem}>Delete</ActionSheetItem>
       {osname === IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
     </ActionSheet>)))
