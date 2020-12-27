@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouterProvider, useRoute } from 'react-router5';
+import { RouterProvider } from 'react-router5';
 import '@vkontakte/vkui/dist/vkui.css';
 import { Provider } from 'react-redux';
 import EBoundary from "../ErrorBoundary/EBoundary";

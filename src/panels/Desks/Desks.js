@@ -1,10 +1,9 @@
-import React, { Fragment, useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
 import DeskList from "../../components/DeskList/DeskList";
 import DeskCreate from "../../components/DeskCreate/DeskCreate";
 
-const Desks = ({ setDesks, desks }) => {
+const Desks = () => {
     return (
       <Fragment>
         <PanelHeaderSimple>My desks</PanelHeaderSimple>

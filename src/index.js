@@ -2,8 +2,9 @@ import "core-js/features/map";
 import "core-js/features/set";
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 // import bridge from "@vkontakte/vk-bridge";
 import * as backend from './api';
@@ -16,6 +17,6 @@ import { reducer } from "./reducers/reducer";
 const route = router.initialize();
 backend.initialize();
 
-const store = createStore(reducer, composeWithDevTools());
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(<App router={route} store={store}/>, document.getElementById("root"));

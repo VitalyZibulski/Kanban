@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import DeskItem from "../DeskItem/DeskItem";
 import { CardGrid } from "@vkontakte/vkui";
-import { getDesks } from "../../api";
-import { setDesks } from "../../actions/actions";
+import { fetchDesks } from "../../actions/actions";
 
 const DeskList = () => {
   const dispatch = useDispatch();
   const desks = useSelector((state) => state.desks);
 
   useEffect(() => {
-      getDesks().then((desks) => dispatch(setDesks(desks)))
-  }, []);
+      dispatch(fetchDesks());
+  }, [dispatch]);
 
 
   if (!desks.length) {

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Div, Card, Header, Button, ActionSheet, ActionSheetItem, usePlatform, IOS } from "@vkontakte/vkui";
 import Icon16MoreHorizontal from '@vkontakte/icons/dist/16/more_horizontal';
 import Cards from "../Cards/Cards";
-import { deleteColumn } from "../../api";
+import { api } from "../../api";
 import { removeColumn, setPopout } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
@@ -14,7 +14,7 @@ const Column = ({ name, id }) => {
   const osname = usePlatform();
 
   const deleteItem = () => {
-      deleteColumn(id)
+      api.deleteColumn(id)
       .then(() => dispatch(removeColumn(id)))
       .catch(console.error);
   };

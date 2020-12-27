@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { Card, Div, Button } from "@vkontakte/vkui";
 import { pages } from "../../router";
 import { useRouter } from 'react-router5';
-import { deleteDesk } from "../../api";
 
-import { removeDesk } from "../../actions/actions";
+import { deleteDesk } from "../../actions/actions";
 import './DeskItem.css';
 import { useDispatch } from "react-redux";
 
@@ -16,9 +15,7 @@ const DeskItem = ({ id, children }) => {
     const deleteItem = (event) => {
       event.stopPropagation();
 
-      deleteDesk(id)
-        .then(() => dispatch(removeDesk(id)))
-        .catch(console.error);
+      dispatch(deleteDesk(id));
     };
 
     return (
