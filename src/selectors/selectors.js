@@ -1,12 +1,12 @@
-export const getActivePanel = (state) => state.activePanel;
+export const getActivePanel = (state) => state.app.activePanel;
 
-export const getPopout = (state) => state.popout;
+export const getPopout = (state) => state.app.popout;
 
-export const getCards = (state) => state.cards;
+export const getCards = (state) => state.cards.cards;
 
-export const getDesks = (state) => state.desks;
+export const getDesks = (state) => state.desks.desks;
 
-export const getColumns = (state) => state.columns;
+export const getColumns = (state) => state.columns.columns;
 
 
 // id need filter
