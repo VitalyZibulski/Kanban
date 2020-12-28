@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import PropTypes from 'prop-types';
 import { Div, Card } from "@vkontakte/vkui";
-import { deleteCard } from "../../actions/actions";
+import { deleteCard } from "../../actions";
 
 import './ColumnCard.css';
 

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { View, Panel } from '@vkontakte/vkui';
 import { useRoute } from 'react-router5';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeRoute } from "../../actions/actions";
+import { changeRoute } from "../../actions";
 import Desks from "../../panels/Desks/Desks";
 import Columns from "../../panels/Columns/Columns";
 import { pages } from "../../router";
@@ -10,8 +10,8 @@ import { getActivePanel, getPopout } from "../../selectors/selectors";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const activePanel = useSelector(getActivePanel());
-	const popout = useSelector(getPopout());
+	const activePanel = useSelector(getActivePanel);
+	const popout = useSelector(getPopout);
 	const { router, route } = useRoute();
 
 	useEffect(() => {

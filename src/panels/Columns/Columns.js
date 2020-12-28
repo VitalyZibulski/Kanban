@@ -4,15 +4,15 @@ import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from 'react-router5';
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
-import { fetchColumns } from "../../actions/actions";
+import { fetchColumns } from "../../actions";
 import { getColumns, getDesks } from "../../selectors/selectors";
 
 import './Columns.css';
 
 const Columns = () => {
   const dispatch = useDispatch();
-  const columns = useSelector(getColumns());
-  const desks = useSelector(getDesks());
+  const columns = useSelector(getColumns);
+  const desks = useSelector(getDesks);
   const goToDesks = () => window.history.back();
 
   const { route: { params: { deskId } } } = useRoute();

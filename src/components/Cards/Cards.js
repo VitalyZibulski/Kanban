@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import ColumnCard from "../ColumnCard/ColumnCard";
 import { CardGrid, Div } from "@vkontakte/vkui";
 import CardCreate from "../CardCreate/CardCreate";
-import { fetchCards } from "../../actions/actions";
+import { fetchCards } from "../../actions";
 
 import './Cards.css';
 import { getCards } from "../../selectors/selectors";
 
 const Cards = ({ columnId }) => {
   const dispatch = useDispatch();
-  const cards = useSelector(getCards());
+  const cards = useSelector(getCards);
 
   useEffect(() => {
-    dispatch(fetchCards());
+    dispatch(fetchCards(columnId));
   }, [dispatch]);
 
     return (

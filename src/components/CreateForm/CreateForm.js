@@ -13,7 +13,7 @@ const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
       setFormMode,
       onChangeInput,
       isButtonMode
-    } = useCreateForm(onSubmit);
+    } = useCreateForm({ onSubmit });
 
     if (isButtonMode) {
       return (

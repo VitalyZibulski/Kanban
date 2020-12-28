@@ -79,6 +79,7 @@ const deleteColumn = (id) => {
 }
 
 const getCards = (columnId) => {
+  console.log('columnId', columnId);
   const db = firebase.firestore();
 
   return db.collection("cards").where('columnId', '==', columnId).get()
@@ -116,6 +117,7 @@ const createCard = (name, columnId) => {
 }
 
 const createColumn = (name, deskId) => {
+  console.log(deskId, 'deskd');
   const db = firebase.firestore();
 
   return db.collection("columns")
