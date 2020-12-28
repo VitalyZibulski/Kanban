@@ -7,10 +7,11 @@ import CardCreate from "../CardCreate/CardCreate";
 import { fetchCards } from "../../actions/actions";
 
 import './Cards.css';
+import { getCards } from "../../selectors/selectors";
 
 const Cards = ({ columnId }) => {
   const dispatch = useDispatch();
-  const cards = useSelector((state) => state.cards);
+  const cards = useSelector(getCards());
 
   useEffect(() => {
     dispatch(fetchCards());

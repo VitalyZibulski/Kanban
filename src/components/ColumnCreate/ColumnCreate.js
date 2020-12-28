@@ -7,10 +7,11 @@ import {addColumn} from "../../actions/actions";
 import { useRoute } from "react-router5";
 
 import '../Column/Column.css';
+import { getDesks } from "../../selectors/selectors";
 
 const ColumnCreate = () => {
     const dispatch = useDispatch();
-    const desks = useSelector((state) => state.desks);
+    const desks = useSelector(getDesks());
 
     const { route: { params: { deskId } } } = useRoute();
     const desk = desks.find(({ id }) => id === deskId) || {};

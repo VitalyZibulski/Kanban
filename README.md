@@ -20,3 +20,5 @@
 ##### No more than 100 string code in a component
 ##### Query to server always Promise
 ##### rule of hook - start with use
+> Redux
+##### Selector is only one way to work with store
