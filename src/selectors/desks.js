@@ -1,1 +1,1 @@
-export const getDesks = (state) => state.desks.desks;
+export const getDesks = (state) => state.desks.list;

@@ -1,18 +1,18 @@
 import * as actionType from '../actions/types';
 
 const initialState = {
-  desks: [],
+  list: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case actionType.ADD_DESK: {
       const { desk } = payload;
-      const desks = [...state.columns, desk];
+      const list = [...state.list, desk];
 
       return {
         ...state,
-        desks,
+        list,
       }
     }
 
@@ -21,17 +21,17 @@ const reducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        desks,
+        list: desks,
       }
     }
 
     case actionType.REMOVE_DESK: {
       const { removeId } = payload;
-      const desks = state.columns.filter(({id}) => id !== removeId)
+      const list = state.list.filter(({id}) => id !== removeId)
 
       return {
         ...state,
-        desks,
+        list,
       }
     }
 

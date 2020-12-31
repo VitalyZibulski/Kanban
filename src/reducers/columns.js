@@ -1,18 +1,18 @@
 import * as actionType from '../actions/types';
 
 const initialState = {
-  columns: [],
+  list: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case actionType.ADD_COLUMN: {
       const { column } = payload;
-      const columns = [...state.columns, column];
+      const list = [...state.list, column];
 
       return {
         ...state,
-        columns,
+        list,
       }
     }
 
@@ -21,17 +21,17 @@ const reducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        columns,
+        list: columns,
       }
     }
 
     case actionType.REMOVE_COLUMN: {
       const { removeId } = payload;
-      const columns = state.columns.filter(({id}) => id !== removeId)
+      const list = state.list.filter(({id}) => id !== removeId)
 
       return {
         ...state,
-        columns,
+        list,
       }
     }
 

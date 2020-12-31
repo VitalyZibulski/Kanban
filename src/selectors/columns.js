@@ -1,1 +1,1 @@
-export const getColumns = (state) => state.columns.columns;
+export const getColumns = (state) => state.columns.list;
