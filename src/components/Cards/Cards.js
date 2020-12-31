@@ -7,7 +7,7 @@ import CardCreate from "../CardCreate/CardCreate";
 import { fetchCards } from "../../actions";
 
 import './Cards.css';
-import { getCards } from "../../selectors/selectors";
+import { getCards } from "../../selectors";
 
 const Cards = ({ columnId }) => {
   const dispatch = useDispatch();

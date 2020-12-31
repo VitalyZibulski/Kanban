@@ -6,7 +6,7 @@ import { changeRoute } from "../../actions";
 import Desks from "../../panels/Desks/Desks";
 import Columns from "../../panels/Columns/Columns";
 import { pages } from "../../router";
-import { getActivePanel, getPopout } from "../../selectors/selectors";
+import { getActivePanel, getPopout } from "../../selectors";
 
 const App = () => {
 	const dispatch = useDispatch();

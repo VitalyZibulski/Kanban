@@ -1,12 +1,14 @@
 import * as actionType from "./types";
 import { api } from "../api";
+import { getDesks } from '../selectors';
+import {getState} from "core-js";
 
 export const addColumn = (column) => ({ type: actionType.ADD_COLUMN, payload: { column }});
 export const removeColumn = (removeId) => ({ type: actionType.REMOVE_COLUMN, payload: { removeId }});
 export const setColumns = (columns) => ({ type: actionType.SET_COLUMNS, payload: { columns }});
 
 export const fetchColumns = (deskId) => (dispatch, getState) => {
-  const desks = getState().desks;
+  const desks = getDesks(getState());
   const desk = desks.find(({ id }) => id === deskId) || {};
 
   if (desk.id) {

@@ -5,7 +5,7 @@ import { useRoute } from 'react-router5';
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 import { fetchColumns } from "../../actions";
-import { getColumns, getDesks } from "../../selectors/selectors";
+import { getColumns, getDesks } from "../../selectors";
 
 import './Columns.css';
 

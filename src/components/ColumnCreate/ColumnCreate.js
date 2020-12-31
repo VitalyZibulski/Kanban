@@ -7,7 +7,7 @@ import {addColumn} from "../../actions";
 import { useRoute } from "react-router5";
 
 import '../Column/Column.css';
-import { getDesks } from "../../selectors/selectors";
+import { getDesks } from "../../selectors";
 
 const ColumnCreate = () => {
     const dispatch = useDispatch();

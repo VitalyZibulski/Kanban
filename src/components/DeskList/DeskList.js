@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import DeskItem from "../DeskItem/DeskItem";
 import { CardGrid } from "@vkontakte/vkui";
 import { fetchDesks } from "../../actions";
-import { getDesks } from "../../selectors/selectors";
+import { getDesks } from "../../selectors";
 
 const DeskList = () => {
   const dispatch = useDispatch();
