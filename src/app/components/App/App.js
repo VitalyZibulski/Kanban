@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeRoute } from "../../actions";
 import Desks from "../../../features/desks/panels/Desks/Desks";
 import Columns from "../../../features/columns/panels/Columns/Columns";
+import Card from "../../../features/card/panels/Card/Card";
+
+
 import { pages } from "../../../router";
 import { getActivePanel, getPopout } from "../../selectors";
 
@@ -32,6 +35,9 @@ const App = () => {
 						</Panel>
 						<Panel id={pages.COLUMNS} separator={false} className="Columns">
 							<Columns />
+						</Panel>
+						<Panel id={pages.CARD} separator={false}>
+							<Card />
 						</Panel>
 					</View>
 				</Fragment>

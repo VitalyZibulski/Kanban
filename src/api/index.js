@@ -79,7 +79,6 @@ const deleteColumn = (id) => {
 }
 
 const getCards = (columnId) => {
-  console.log('columnId', columnId);
   const db = firebase.firestore();
 
   return db.collection("cards").where('columnId', '==', columnId).get()
@@ -100,6 +99,18 @@ const getCards = (columnId) => {
     });
 }
 
+const getCard = (cardId) => {
+  const db = firebase.firestore();
+
+  return db.collection("cards").doc(cardId).get()
+    .then((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+};
+
+// window.getCard = getCard;
+
 const deleteCard = (id) => {
   const db = firebase.firestore();
 
@@ -117,7 +128,6 @@ const createCard = (name, columnId) => {
 }
 
 const createColumn = (name, deskId) => {
-  console.log(deskId, 'deskd');
   const db = firebase.firestore();
 
   return db.collection("columns")
@@ -132,6 +142,7 @@ export const api = {
   getColumns,
   deleteColumn,
   getCards,
+  getCard,
   deleteCard,
   createCard,
   createColumn,

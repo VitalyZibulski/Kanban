@@ -7,6 +7,7 @@ import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 import { fetchColumns } from "../../actions";
 import { getColumns } from "../../selectors";
 import { getDesks } from "../../../desks/selectors";
+import { goBack } from "../../../../app/actions";
 
 import './Columns.css';
 
@@ -14,7 +15,7 @@ const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(getColumns);
   const desks = useSelector(getDesks);
-  const goToDesks = () => window.history.back();
+  const goToDesks = () => dispatch(goBack());
 
   const { route: { params: { deskId } } } = useRoute();
   const desk = desks.find(({ id }) => id === deskId) || {};
