@@ -18,7 +18,7 @@ const App = () => {
 		router.subscribe((...args) => dispatch(changeRoute(...args)));
 
 		dispatch(changeRoute({ route }));
-	}, [dispatch]);
+	}, [dispatch, route, router]);
 
 	if (!activePanel) {
 		return null;

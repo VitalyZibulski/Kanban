@@ -15,7 +15,7 @@ const Cards = ({ columnId }) => {
 
   useEffect(() => {
     dispatch(fetchCards(columnId));
-  }, [dispatch]);
+  }, [dispatch, columnId]);
 
     return (
       <Fragment>
