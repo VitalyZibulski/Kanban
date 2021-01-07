@@ -5,6 +5,7 @@ import { useRoute } from 'react-router5';
 import { fetchCard } from "../../actions";
 import { getName } from "../../selectors";
 import { goBack } from "../../../../app/actions";
+import CardContent from "../../components/CardContent/CardContent";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const Card = () => {
       <PanelHeaderSimple left={<PanelHeaderBack onClick={goToColumns} />}>Card {cardName ? cardName : ''}</PanelHeaderSimple>
 
       {isLoading && <PanelSpinner />}
+
+      <CardContent />
     </Fragment>
   );
 }

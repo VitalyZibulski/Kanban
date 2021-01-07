@@ -22,3 +22,5 @@
 ##### rule of hook - start with use
 > Redux
 ##### Selector is only one way to work with store
+> HTML
+##### For shielding use dangerouslySetInnerHTML={{ __html: content }}
