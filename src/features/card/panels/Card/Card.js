@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback, memo } from 'react';
 import {PanelHeaderBack, PanelHeaderSimple, PanelSpinner} from "@vkontakte/vkui";
 import { useDispatch, useSelector } from "react-redux";
 import { useRoute } from 'react-router5';
@@ -12,14 +12,14 @@ const Card = () => {
   const [isLoading, setLoader] = useState(true);
   const { route: { params: { cardId } } } = useRoute();
   const cardName = useSelector(getName);
-  const goToColumns = () => dispatch(goBack());
+  const goToColumns = useCallback(() => dispatch(goBack()), [dispatch]);
 
   useEffect(() => {
     if (cardId) {
       setLoader(true);
       dispatch(fetchCard(cardId)).finally(() => setLoader(false));
     }
-  }, [cardId]);
+  }, [dispatch, cardId]);
 
   return (
     <Fragment>
@@ -32,4 +32,4 @@ const Card = () => {
   );
 }
 
-export default Card;
+export default memo(Card);

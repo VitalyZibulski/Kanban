@@ -24,3 +24,5 @@
 ##### Selector is only one way to work with store
 > HTML
 ##### For shielding use dangerouslySetInnerHTML={{ __html: content }}
+> Optimization
+##### React.PureComponent rerender component if props were changed

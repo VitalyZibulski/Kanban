@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useCallback, memo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from 'react-router5';
@@ -15,7 +15,7 @@ const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(getColumns);
   const desks = useSelector(getDesks);
-  const goToDesks = () => dispatch(goBack());
+  const goToDesks = useCallback(() => dispatch(goBack()), [dispatch]);
 
   const { route: { params: { deskId } } } = useRoute();
   const desk = desks.find(({ id }) => id === deskId) || {};
@@ -40,4 +40,4 @@ const Columns = () => {
     );
 }
 
-export default Columns;
+export default memo(Columns);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class EBoundary extends React.Component {
+class EBoundary extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -21,12 +21,16 @@ class EBoundary extends React.Component {
         // dispatchAnalytic(error);
     }
 
+    reloadPage() {
+        window.location.reload();
+    }
+
     render() {
         if (this.state.hasError) {
             return (
               <div>
                   <h1>Error</h1>
-                  <button onClick={window.location.reload}>Reload</button>
+                  <button onClick={this.reloadPage}>Reload</button>
 
                   {/*<button>Show technical information</button>*/}
                   {/*{this.state.stack}*/}

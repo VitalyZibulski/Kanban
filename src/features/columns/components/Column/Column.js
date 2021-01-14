@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Div, Card, Header, Button, ActionSheet, ActionSheetItem, usePlatform, IOS } from "@vkontakte/vkui";
 import Icon16MoreHorizontal from '@vkontakte/icons/dist/16/more_horizontal';
 import Cards from "../../../cards/components/Cards/Cards";
-import { api } from "../../../../api";
 import { deleteColumn } from "../../actions";
 import { setPopout } from "../../../../app/actions";
 import { useDispatch } from "react-redux";
@@ -14,18 +13,15 @@ const Column = ({ name, id }) => {
   const dispatch = useDispatch();
   const osname = usePlatform();
 
-  const deleteItem = () => {
-      api.deleteColumn(id)
-      .then(() => dispatch(deleteColumn(id)))
-      .catch(console.error);
-  };
+  const deleteItem = useCallback(() => dispatch(deleteColumn(id)), [dispatch, id]);
 
-  const showColumnOptions = () => {
-    dispatch(setPopout((<ActionSheet onClose={() => dispatch(setPopout(null))}>
-      <ActionSheetItem autoclose mode="destructive" onClick={deleteItem}>Delete</ActionSheetItem>
-      {osname === IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
-    </ActionSheet>)))
-  }
+  const showColumnOptions = useCallback(() => {
+        dispatch(setPopout((<ActionSheet onClose={() => dispatch(setPopout(null))}>
+          <ActionSheetItem autoclose mode="destructive" onClick={deleteItem}>Delete</ActionSheetItem>
+          {osname === IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
+        </ActionSheet>
+      )))
+    },[dispatch, deleteItem, osname]);
 
     return (
       <Div className="Column">
@@ -52,4 +48,4 @@ Column.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default Column;
+export default memo(Column);

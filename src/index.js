@@ -9,6 +9,14 @@ import * as backend from './api';
 import * as router from './router';
 import App from "./app/components/App/AppContainer";
 
+if (process.env.NODE_ENV === 'development') {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  whyDidYouRender(React, {
+    trackAllPureComponents: true,
+    trackExtraHooks: [[require('react-redux/lib'), 'useSelector']]
+  });
+}
+
 // Init VK  Mini App
 // bridge.send("VKWebAppInit");
 const route = router.initialize();

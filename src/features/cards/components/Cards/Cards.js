@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, memo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import ColumnCard from "../../../columns/components/ColumnCard/ColumnCard";
@@ -33,4 +33,4 @@ Cards.propTypes = {
   columnId: PropTypes.string.isRequired,
 }
 
-export default Cards;
+export default memo(Cards);

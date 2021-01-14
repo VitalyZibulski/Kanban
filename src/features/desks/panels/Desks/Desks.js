@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
 import DeskList from "../../components/DeskList/DeskList";
 import DeskCreate from "../../components/DeskCreate/DeskCreate";
@@ -14,4 +14,4 @@ const Desks = () => {
     );
 }
 
-export default Desks;
+export default memo(Desks);
