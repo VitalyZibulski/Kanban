@@ -83,6 +83,12 @@ const deleteColumn = (id) => {
     .delete()
 }
 
+const editColumn = (id, name) => {
+  const db = firebase.firestore();
+
+  return db.collection("columns").doc(id).update({ name });
+}
+
 const getCards = (columnId) => {
   const db = firebase.firestore();
 
@@ -147,6 +153,7 @@ export const api = {
   deleteDesk,
   getColumns,
   deleteColumn,
+  editColumn,
   getCards,
   getCard,
   deleteCard,

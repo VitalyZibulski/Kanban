@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export const modes = {
   button: 'button',
@@ -16,15 +16,15 @@ export const useCreateForm = ({ initialMode = modes.button, initialValue = '', o
   const [status, setStatus] = useState(statuses.default);
   const onChangeInput = (event) => setName(event.target.value);
   const isButtonMode = mode === modes.button;
-  const reset = () => {
+  const reset = useCallback(() => {
     onCancel && onCancel();
     setStatus(statuses.default);
     setMode(modes.button);
     setName('');
-  }
+  }, [onCancel]);
 
   // if submitted return Promise
-  const submit = (event) => {
+  const submit = useCallback((event) => {
     if (event) {
       event.preventDefault();
     }
@@ -35,7 +35,7 @@ export const useCreateForm = ({ initialMode = modes.button, initialValue = '', o
     }
 
     onSubmit(name).then(reset)
-  };
+  }, [name, onSubmit, reset]);
 
   const setFormMode = () => setMode(modes.form);
   const setButtonMode = () => setMode(modes.button);
