@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const modes = {
+export const modes = {
   button: 'button',
   form: 'form',
 }
@@ -10,13 +10,14 @@ const statuses = {
   error: 'error',
 }
 
-export const useCreateForm = ({ onSubmit }) => {
-  const [mode, setMode] = useState(modes.button);
-  const [name, setName] = useState('');
+export const useCreateForm = ({ initialMode = modes.button, initialValue = '', onSubmit, onCancel }) => {
+  const [mode, setMode] = useState(initialMode);
+  const [name, setName] = useState(initialValue);
   const [status, setStatus] = useState(statuses.default);
   const onChangeInput = (event) => setName(event.target.value);
   const isButtonMode = mode === modes.button;
   const reset = () => {
+    onCancel && onCancel();
     setStatus(statuses.default);
     setMode(modes.button);
     setName('');

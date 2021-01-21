@@ -5,13 +5,12 @@ import "firebase/firestore";
 
 export const initialize = () => {
   firebase.initializeApp({
-    apiKey: "AIzaSyASEnsAwJEVyja5okVqzeREhRtVnDWPaX0",
-    authDomain: "kanban-42dc8.firebaseapp.com",
-    projectId: "kanban-42dc8",
-    storageBucket: "kanban-42dc8.appspot.com",
-    messagingSenderId: "907029208239",
-    appId: "1:907029208239:web:6162268fc32be93e24485a",
-    measurementId: "G-42P9KFRKHQ"
+    apiKey: "AIzaSyB_aTnYlSg-7y-ETw9mivl2RBttQFHHQ6U",
+    authDomain: "kanban1-4fc07.firebaseapp.com",
+    projectId: "kanban1-4fc07",
+    storageBucket: "kanban1-4fc07.appspot.com",
+    messagingSenderId: "929255171951",
+    appId: "1:929255171951:web:1e497fb1510c5aa3366a9a"
   });
   firebase.analytics();
 }
@@ -23,6 +22,12 @@ const createDesk = (name) => {
   return db.collection("desks")
     .add({ name })
     .then((docRef) => docRef.get())
+}
+
+const editDesk = (id, name) => {
+  const db = firebase.firestore();
+
+  return db.collection("desks").doc(id).update({ name });
 }
 
 const getDesks = () => {
@@ -137,6 +142,7 @@ const createColumn = (name, deskId) => {
 
 export const api = {
   createDesk,
+  editDesk,
   getDesks,
   deleteDesk,
   getColumns,
