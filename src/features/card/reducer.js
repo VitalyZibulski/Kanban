@@ -16,6 +16,12 @@ const reducer = (state = initialState, { type, payload }) => {
       }
     }
 
+    case actionType.REMOVE_CARD: {
+      return {
+        ...initialState,
+      }
+    }
+
     default: {
       return state;
     }

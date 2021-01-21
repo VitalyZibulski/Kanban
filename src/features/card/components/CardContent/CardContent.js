@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { FixedLayout, Button, Div, Textarea } from "@vkontakte/vkui";
 import { getId, getText } from "../../selectors";
 import TextContent from "../TextContent/TextContent";
-import { editCard } from "../../actions";
+import { editCard, deleteCard } from "../../actions";
 
 import './style.css';
+import {goBack} from "../../../../app/actions";
 
 const CardContent = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const CardContent = () => {
     }
   }, [isEditableMode, value, dispatch, id]);
   const changeValue = useCallback(({ target: {value} }) => setValue(value), []);
+  const deleteItem = useCallback(() => {
+    dispatch(deleteCard(id)).finally(() => dispatch(goBack()));
+  }, [dispatch, id]);
 
   return (
       <Fragment>
@@ -32,8 +36,9 @@ const CardContent = () => {
         ) : <TextContent />}
 
         <FixedLayout vertical="bottom">
-          <Div>
+          <Div className="CardContent_buttons">
             <Button mode="commerce" size="l" onClick={changeMode}>{isEditableMode ? 'Save' : 'Change'}</Button>
+            <Button mode="destructive" size="l" onClick={deleteItem}>Delete</Button>
           </Div>
         </FixedLayout>
       </Fragment>

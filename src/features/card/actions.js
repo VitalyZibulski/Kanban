@@ -1,5 +1,6 @@
 import * as actionType from './types';
 import { api } from "../../api";
+import { deleteCard as deleteItem } from "../cards/actions";
 
 const setCard = ({ id, name, text }) => ({
   type: actionType.SET_CARD,
@@ -7,6 +8,7 @@ const setCard = ({ id, name, text }) => ({
 });
 
 const replaceCard = (id, data = {}) => ({ type: actionType.REPLACE_CARD, payload: data });
+const removeCard = () => ({ type: actionType.REMOVE_CARD });
 
 export const fetchCard = (cardId) => (dispatch) => (
   api.getCard(cardId)
@@ -25,3 +27,5 @@ export const editCard = (id, data) => (dispatch) => (
     })
     .catch(() => dispatch({ type: actionType.EDIT_CARD_FAIL}))
 )
+
+export const deleteCard = (id) => (dispatch) => dispatch(deleteItem(id)).then(() => dispatch(removeCard()));
