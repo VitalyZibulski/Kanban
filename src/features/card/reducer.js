@@ -8,7 +8,8 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionType.SET_CARD: {
+    case actionType.SET_CARD:
+    case actionType.REPLACE_CARD: {
       return {
         ...state,
         ...payload,

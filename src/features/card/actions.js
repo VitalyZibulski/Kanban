@@ -6,6 +6,8 @@ const setCard = ({ id, name, text }) => ({
   payload: { id, name, text },
 });
 
+const replaceCard = (id, data = {}) => ({ type: actionType.REPLACE_CARD, payload: data });
+
 export const fetchCard = (cardId) => (dispatch) => (
   api.getCard(cardId)
     .then((card) => {
@@ -13,4 +15,13 @@ export const fetchCard = (cardId) => (dispatch) => (
       dispatch(setCard(card));
     })
     .catch(() => dispatch({ type: actionType.FETCH_CARD_FAIL}))
+)
+
+export const editCard = (id, data) => (dispatch) => (
+  api.editCard(id, data)
+    .then(() => {
+      dispatch({ type: actionType.EDIT_CARD_SUCCESS});
+      dispatch(replaceCard(id, data));
+    })
+    .catch(() => dispatch({ type: actionType.EDIT_CARD_FAIL}))
 )
