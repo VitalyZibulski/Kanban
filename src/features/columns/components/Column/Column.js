@@ -31,7 +31,7 @@ const Column = ({ name, id }) => {
           {osname === IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
         </ActionSheet>
       )))
-    },[dispatch, deleteItem, osname]);
+    },[dispatch, deleteItem, osname, editItem]);
 
     return (
       <Div className="Column">

@@ -7,7 +7,7 @@ import { modes } from "../../../../components/CreateForm/hooks";
 
 const DeskEdit = ({ id, name, onSubmit }) => {
     const dispatch = useDispatch();
-    const editItem = useCallback((name) => dispatch(editDesk(id, name)).finally(onSubmit), [dispatch, id]);
+    const editItem = useCallback((name) => dispatch(editDesk(id, name)).finally(onSubmit), [dispatch, id, onSubmit]);
 
     return (
       <CreateForm

@@ -41,7 +41,7 @@ const DeskItem = ({ id, children }) => {
         {osname === IOS && <ActionSheetItem autoclose mode="cancel">Cancel</ActionSheetItem>}
       </ActionSheet>
     )))
-  },[dispatch, deleteItem, osname]);
+  },[dispatch, deleteItem, osname, editItem]);
 
     if (isEditableState) {
       return <DeskEdit onSubmit={onEditDesk} id={id} name={children}/>
